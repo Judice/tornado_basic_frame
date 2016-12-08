@@ -5,6 +5,7 @@ from tornado.options import options
 import tornado.ioloop
 
 from utils.log import LOG
+from timer_task import TimerTask
 
 class Server(HTTPServer):
 
@@ -14,6 +15,8 @@ class Server(HTTPServer):
     def run_server(self):
         LOG.info("Server is listening port: %d" % options.port)
         self.listen(options.port)
+        timer_task = TimerTask(self)
+        timer_task.start()
         try:
             LOG.info("Server is running now!")
             tornado.ioloop.IOLoop.instance().start()
