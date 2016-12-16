@@ -7,8 +7,7 @@ from base_handler import BaseHandler
 class IndexHandler(BaseHandler):
 
     def get(self, *args, **kwargs):
-        self.write("hello world!")
-        self.finish()
+        self.render("index.html")
 
     def post(self, *args, **kwargs):
         print self.request.params
